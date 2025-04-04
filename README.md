@@ -187,7 +187,7 @@ browser_manager.run_terminal(
 
 Đổi số `4` thành số bất kì
 
-**Lưu ý:** Hầu hết trường hợp bị lỗi là do quá trình load chậm khi chạy nhiều profile cùng lúc. Tuỳ thuộc vào tài nguyên máy tính và tốc độ internet, hãy điểu chỉnh con số thích hợp.
+**Lưu ý:** Hầu hết trường hợp bị lỗi là do quá trình load chậm khi chạy nhiều profile cùng lúc. Tuỳ thuộc vào tài nguyên máy tính và tốc độ internet, hãy điều chỉnh con số thích hợp.
 
 ### 🔹 **Chặn hình ảnh và video để tăng tốc độ tải trang**
 
