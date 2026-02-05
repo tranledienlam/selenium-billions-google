@@ -1,4 +1,4 @@
-# AUTOMATION BILLIONS  + GOOGLE với Selenium Python
+# ~~AUTOMATION BILLIONS  + GOOGLE với Selenium Python~~
 
 ## ⚠ Lưu ý quan trọng
 

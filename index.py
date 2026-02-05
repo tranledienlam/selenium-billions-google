@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 
 from browser_automation import BrowserManager, Node
 from utils import Utility
-from google import Auto as GoogleAuto, Setup as GoogleSetup
+from googl import Auto as GoogleAuto, Setup as GoogleSetup
 
 class Auto:
     def __init__(self, node: Node, profile: dict) -> None:
@@ -19,27 +19,28 @@ class Auto:
         self.node.go_to('https://signup.billions.network/?rc=WGIG2OST', 'get')
 
         # Kiểm tra xem trang đăng nhập hay không
-        text_h1 = self.node.get_text(By.TAG_NAME, 'h1')
-        if text_h1 == 'Join Billions Network':
+        text_h2 = self.node.get_text(By.TAG_NAME, 'h2')
+        if text_h2.lower() == 'Sign in to Billions'.lower():
             self.node.find_and_click(By.XPATH, '//span[contains(text(),"Accept")]', None, None, 10)
             self.node.log('Cần đăng nhập Google để tiếp tục')
                     # Click vào nút Google để đăng nhập
-            self.node.find_and_click(By.XPATH, '//span[contains(text(),"Google")]')
+            self.node.find_and_click(By.XPATH, '//span[contains(text(),"Continue with Google")]')
             
             # Kiểm tra xem có bị reCaptcha không
-            if self.node.find(By.XPATH, '//span[contains(text(),"reCAPTCHA")]', None, 0, 10):
+            if self.node.find(By.XPATH, '//span[contains(text(),"CAPTCHA")]', None, 0, 10):
                 self.node.snapshot('⚠️ Phát hiện lỗi reCaptcha')
                 return False
             
             # Đăng nhập Google
             self.google.sign_in_google()
+        elif text_h2.lower() == "Upcoming rewards".lower():
             text_h1 = self.node.get_text(By.TAG_NAME, 'h1')
 
         # Check-in
-        if 'Level' in text_h1:
+        if 'Level' in text_h2:
             self.node.log('Đang ở Dashboard')
             self.node.find_and_click(By.XPATH, '//span[contains(text(),"Accept")]', None, None, 10)
-            self.node.find_and_click(By.XPATH, '//span[contains(text(),"Click & Earn")]', timeout=20)
+            self.node.find_and_click(By.XPATH, '//button[contains(text(),"Click & Earn")]', timeout=20)
 
         else:
             self.node.snapshot(f'Không tìm thấy {text_h1}')
@@ -77,7 +78,7 @@ if __name__ == '__main__':
         exit()
 
     browser_manager = BrowserManager(AutoHandlerClass=Auto, SetupHandlerClass=Setup)
-    browser_manager.config_extension('meta-wallet-*.crx')
+    # browser_manager.config_extension('meta-wallet-*.crx')
     # browser_manager.run_browser(profiles[1])
     browser_manager.run_terminal(
         profiles=profiles,

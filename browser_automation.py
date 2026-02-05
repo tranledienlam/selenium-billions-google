@@ -1039,7 +1039,7 @@ class BrowserManager:                                                           
         scale = 1 if (rows == 1) else 0.5
 
         chrome_options = ChromeOptions()
-    
+
         chrome_options.add_argument(
             f'--user-data-dir={self.user_data_dir}/{profile_name}')
         # chrome_options.add_argument(f'--profile-directory={profile_name}') # tắt để sử dụng profile default trong profile_name
